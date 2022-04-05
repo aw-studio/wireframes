@@ -9,7 +9,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "AwStudio\\Wireframes\\": "src/"
+            "AwStudio\\Wireframes\\": "setup/"
         }
     },
     "autoload-dev": {
@@ -27,7 +27,8 @@
     "require": {
         "illuminate/support": "^9.0",
         "illuminate/contracts": "^9.0",
-        "macramejs/admin-laravel": "dev-main"
+        "macramejs/admin-laravel": "dev-main",
+        "illuminate/console": "^9.6"
     },
     "extra": {
         "laravel": {
