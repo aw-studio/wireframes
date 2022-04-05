@@ -2,6 +2,7 @@
 
 namespace AwStudio\Wireframes;
 
+use AwStudio\Wireframes\Console\MakeWireframesCommand;
 use Illuminate\Support\ServiceProvider;
 
 class WireframesServiceProvider extends ServiceProvider
@@ -12,7 +13,7 @@ class WireframesServiceProvider extends ServiceProvider
      * @var array
      */
     protected $commands = [
-        'MakeNavBuilder' => MakeNavBuilderCommand::class,
+        'MakeWireframes' => MakeWireframesCommand::class,
     ];
 
     /**
@@ -45,10 +46,10 @@ class WireframesServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function registerMakeNavBuilderCommand()
+    protected function registerMakeWireframesCommand()
     {
-        $this->app->singleton(MakeNavBuilderCommand::class, function ($app) {
-            return new MakeNavBuilderCommand($app['files']);
+        $this->app->singleton(MakeWireframesCommand::class, function ($app) {
+            return new MakeWireframesCommand($app['files']);
         });
     }
 }
