@@ -69,6 +69,7 @@
 <script lang="ts" setup>
 import { computed, onMounted, Ref, ref, toRef, watch } from 'vue';
 import EmblaCarousel, { EmblaCarouselType } from 'embla-carousel';
+import Autoplay from 'embla-carousel-autoplay';
 import { Button } from '../';
 import { isBetween, breakpoints } from './carousel';
 
@@ -110,6 +111,13 @@ const props = defineProps({
             },
         }),
     },
+    autoplay: {
+        type: Object,
+        default: () => ({
+            active: false,
+            timePerSlide: 5000,
+        }),
+    },
     buttons: {
         type: Boolean,
         default: true,
@@ -145,6 +153,18 @@ const onResize = () => {
     embla.value?.scrollTo(0);
 };
 
+const autoplay = Autoplay(
+    { delay: props.autoplay.timePerSlide, stopOnInteraction: false },
+    (emblaRoot) => emblaRoot.parentElement
+);
+
+const hasAutoplay = computed(() => {
+    if (props.autoplay.active) {
+        return [autoplay];
+    }
+    return [];
+});
+
 /**
  * update selected index and modelValue for syncing
  */
@@ -172,7 +192,7 @@ const options = computed(() => {
     if (props.options.xl && isBetween(breakpoints.lg, breakpoints.xl - 1)) {
         return props.options.xl;
     }
-    if (props.options['2xl'] && isBetween(breakpoints.xl, 5000)) {
+    if (props.options['2xl'] && isBetween(breakpoints.xl, 9999)) {
         return props.options['2xl'];
     }
     return props.options.sm;
@@ -181,7 +201,8 @@ const options = computed(() => {
 onMounted(() => {
     embla.value = EmblaCarousel(
         container.value,
-        options.value
+        options.value,
+        hasAutoplay.value
     ) as EmblaCarouselType;
     embla.value.on('select', onSelect);
     embla.value.on('resize', onResize);

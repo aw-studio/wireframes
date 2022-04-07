@@ -96,6 +96,10 @@
         <div class="container w-full my-16">
             <Carousel
                 v-model="carouselCurrent"
+                :autoplay="{
+                    active: true,
+                    timePerSlide: 6000,
+                }"
                 overflowHidden
                 v-if="images.length > 0"
                 dots
