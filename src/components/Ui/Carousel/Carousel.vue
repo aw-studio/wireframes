@@ -153,11 +153,17 @@ const onResize = () => {
     embla.value?.scrollTo(0);
 };
 
+/**
+ * Function gets called when autoplay propis set to active
+ */
 const autoplay = Autoplay(
     { delay: props.autoplay.timePerSlide, stopOnInteraction: false },
     (emblaRoot) => emblaRoot.parentElement
 );
 
+/**
+ * Check weither or not the autoplay function should be added to the carousel plugins
+ */
 const hasAutoplay = computed(() => {
     if (props.autoplay.active) {
         return [autoplay];
