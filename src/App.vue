@@ -147,7 +147,6 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BackgroundSection } from './components/Container';
 import {
     Button,
     Accordion,
@@ -167,7 +166,7 @@ import {
     VideoEmbed,
     ImageInterface,
 } from './components/Media';
-import { Footer, Header } from './layout';
+import { Footer, Header, BackgroundSection } from './layout';
 
 const test = ref('');
 const radioSelected = ref();
