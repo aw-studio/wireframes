@@ -1,6 +1,6 @@
 <template>
     <div>
-        <template v-for="(repeatable, key) in repeatables" :key="key"/>
+        <template v-for="(repeatable, key) in repeatables" :key="key">
             <component
                 v-if="repeatable.type in repeatableComponents"
                 :is="repeatableComponents[repeatable.type]"

@@ -48,7 +48,7 @@ class MakeWireframesCommand extends BaseMakeCommand
         $this->line("Just a view more steps to get started:\n");
 
         $this->line('1. Make sure the following npm packages are installed:');
-        $this->info("npm i tailwindcss lodash.merge @headlessui/vue @macramejs/admin-vue3 @macramejs/admin-config @macramejs/admin-vue3 @macramejs/macrame @macramejs/macrame-vue3 @macramejs/page-builder-vue3 ts-loader typescript vue@next vue-loader@next @inertiajs/inertia @inertiajs/inertia-vue3 @inertiajs/progress vue3-dropzone vue3-popper v-calendar@next\n");
+        $this->info("npm i tailwindcss lodash.merge @headlessui/vue @macramejs/admin-vue3 @macramejs/admin-config @macramejs/admin-vue3 @macramejs/macrame @macramejs/macrame-vue3 @macramejs/page-builder-vue3 ts-loader typescript vue@next vue-loader@next @inertiajs/inertia @inertiajs/inertia-vue3 @inertiajs/progress vue3-dropzone vue3-popper v-calendar@next @floating-ui/dom\n");
 
         $this->line('2. Make sure to update composers autoloader:');
         $this->info("composer dumpautoload\n");
@@ -94,16 +94,23 @@ mix.alias({
         $content = Str::replaceFirst($replace, $insert, $content);
         $this->files->put(base_path('webpack.mix.js'), $content);
 
-        $insert = "const path = require('path');";
+        $insert = "const path = require('path');
+const tailwindcss = require('tailwindcss');";
         $after = "const mix = require('laravel-mix');";
         $this->insertAfter(base_path('webpack.mix.js'), $insert, $after);
 
         // tailwind.config.js
         $this->files->copy(__DIR__.'/../../tailwind.config.js', base_path('app.tailwind.config.js'));
+        $content = $this->files->get(base_path('app.tailwind.config.js'));
+        $content = str_replace("content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],", "content: ['./resources/app/**/*.vue'],", $content);
+        $this->files->put(base_path('app.tailwind.config.js'), $content);
 
         // setup resources
         $this->files->ensureDirectoryExists(resource_path('app/css'));
         $this->files->ensureDirectoryExists(resource_path('app/js'));
+
+        // view
+        $this->files->copy(__DIR__.'/../../src/app.blade.php', resource_path('views/app.blade.php'));
 
         // css
         $this->files->copy(__DIR__.'/../../src/index.css', resource_path('app/css/app.css'));

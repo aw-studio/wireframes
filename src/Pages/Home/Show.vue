@@ -2,7 +2,7 @@
     <Header />
     <main class="mt-[90px] lg:mt-[189px]">
         <div class="container flex flex-wrap gap-5 py-20">
-            <Repeatables :repeatables="page.repeatables" />
+            <Repeatables :repeatables="page.content" />
 
             <!--<Map :zoom="4" :lat="10" :lng="52" />-->
             <!-- <Accordion :content="content" />
