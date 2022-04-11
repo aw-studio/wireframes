@@ -44,6 +44,25 @@ class MakeWireframesCommand extends BaseMakeCommand
         // Artisan::call('make:page-builder', ['app' => 'admin', 'name' => 'page']);
         // Artisan::call('make:nav-builder', ['app' => 'admin']);
 
+        $this->line('Created Macrame Admin application and a wireframes application.');
+        $this->line("Just a view more steps to get started:\n");
+
+        $this->line('1. Make sure the following npm packages are installed:');
+        $this->info("npm i tailwindcss lodash.merge @headlessui/vue @macramejs/admin-vue3 @macramejs/admin-config @macramejs/admin-vue3 @macramejs/macrame @macramejs/macrame-vue3 @macramejs/page-builder-vue3 ts-loader typescript vue@next vue-loader@next @inertiajs/inertia @inertiajs/inertia-vue3 @inertiajs/progress vue3-dropzone vue3-popper v-calendar@next\n");
+
+        $this->line('2. Make sure to update composers autoloader:');
+        $this->info("composer dumpautoload\n");
+
+        $this->line('3. Run the migrations and the seeder:');
+        $this->info("php artisan migrate:fresh --seed\n");
+
+        $this->line('4. Create a development build:');
+        $this->info("npm run watch\n");
+
+        $this->line('5. Visit '.url('admin').' and login using the following credentials:');
+        $this->info('username: admin@admin.com');
+        $this->info('password: secret');
+
         return 0;
     }
 
@@ -55,8 +74,8 @@ class MakeWireframesCommand extends BaseMakeCommand
     protected function makeResources()
     {
         // remove default laravel js resources
-        $this->files->deleteDirectory(resources_path('js'));
-        $this->files->deleteDirectory(resources_path('css'));
+        $this->files->deleteDirectory(resource_path('js'));
+        $this->files->deleteDirectory(resource_path('css'));
 
         // webpack.mix.js
         $insert = "// App
@@ -75,16 +94,27 @@ mix.alias({
         $content = Str::replaceFirst($replace, $insert, $content);
         $this->files->put(base_path('webpack.mix.js'), $content);
 
+        $insert = "const path = require('path');";
+        $after = "const mix = require('laravel-mix');";
+        $this->insertAfter(base_path('webpack.mix.js'), $insert, $after);
+
+        // tailwind.config.js
+        $this->files->copy(__DIR__.'/../../tailwind.config.js', base_path('app.tailwind.config.js'));
+
         // setup resources
-        $this->files->ensureDirectoryExists(resources_path('app/css'));
-        $this->files->ensureDirectoryExists(resources_path('app/js'));
+        $this->files->ensureDirectoryExists(resource_path('app/css'));
+        $this->files->ensureDirectoryExists(resource_path('app/js'));
 
         // css
-        $this->files->copy(__DIR__.'/../../src/index.css', resources_path('app/css/app.css'));
+        $this->files->copy(__DIR__.'/../../src/index.css', resource_path('app/css/app.css'));
 
         // js
-        $this->files->copyDirectory(__DIR__.'/../../src/components', resources_path('app/js/components'));
-        $this->files->copyDirectory(__DIR__.'/../../src/layout', resources_path('app/js/layout'));
+        $this->files->copyDirectory(__DIR__.'/../../src/components', resource_path('app/js/components'));
+        $this->files->copyDirectory(__DIR__.'/../../src/layout', resource_path('app/js/layout'));
+        $this->files->copyDirectory(__DIR__.'/../../src/modules', resource_path('app/js/modules'));
+        $this->files->copyDirectory(__DIR__.'/../../src/types', resource_path('app/js/types'));
+        $this->files->copyDirectory(__DIR__.'/../../src/Pages', resource_path('app/js/Pages'));
+        $this->files->copy(__DIR__.'/../../src/app.ts', resource_path('app/js/app.ts'));
     }
 
     /**
