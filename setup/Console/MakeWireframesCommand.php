@@ -39,10 +39,10 @@ class MakeWireframesCommand extends BaseMakeCommand
         $this->makeResources();
 
         // Make Admin
-        // Artisan::call('make:admin', ['name' => 'admin']);
-        // Artisan::call('make:media-manager', ['app' => 'admin', 'name' => 'media']);
-        // Artisan::call('make:page-builder', ['app' => 'admin', 'name' => 'page']);
-        // Artisan::call('make:nav-builder', ['app' => 'admin']);
+        Artisan::call('make:admin', ['name' => 'admin']);
+        Artisan::call('make:media-manager', ['app' => 'admin', 'name' => 'media']);
+        Artisan::call('make:page-builder', ['app' => 'admin', 'name' => 'page']);
+        Artisan::call('make:nav-builder', ['app' => 'admin']);
 
         $this->line('Created Macrame Admin application and a wireframes application.');
         $this->line("Just a view more steps to get started:\n");
