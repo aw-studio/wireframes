@@ -82,13 +82,75 @@
                 {{ slider }}
             </div>
         </BackgroundSection>
+        <div class="container w-full my-16">
+            <div class="w-full mb-10 lg:w-1/2">
+                <Image :image="image" />
+            </div>
+            <div class="w-full mb-10 lg:w-1/2">
+                <VideoEmbed :video="video" />
+            </div>
+            <div class="w-full mb-10">
+                <ImageGallery :images="images" />
+            </div>
+        </div>
+        <div class="container w-full my-16">
+            <Carousel
+                v-model="carouselCurrent"
+                :autoplay="{
+                    active: true,
+                    timePerSlide: 6000,
+                }"
+                overflowHidden
+                v-if="images.length > 0"
+                dots
+            >
+                <Slide v-for="image in images">
+                    <div class="h-[400px] w-full">
+                        <Image :image="image" />
+                    </div>
+                </Slide>
+            </Carousel>
+        </div>
+        <div class="container w-full my-16">
+            <Carousel
+                v-model="carouselCurrent"
+                overflowHidden
+                v-if="images.length > 0"
+                dots
+            >
+                <Slide v-for="image in images">
+                    <div class="h-[400px] w-full">
+                        <Image :image="image" />
+                    </div>
+                </Slide>
+            </Carousel>
+        </div>
+        <div class="container w-full my-16">
+            <Carousel :options="carouselOptionsX" v-if="images.length > 0" dots>
+                <Slide
+                    :slidesInView="{
+                        sm: 1,
+                        md: 1,
+                        lg: 2,
+                        xl: 3,
+                        '2xl': 4,
+                    }"
+                    v-for="image in images"
+                >
+                    <div
+                        class="h-[400px] w-full shadow-lg bg-white rounded p-6"
+                    >
+                        Test
+                    </div>
+                </Slide>
+            </Carousel>
+        </div>
     </main>
     <Footer />
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { BackgroundSection } from './components/Container';
 import {
     Button,
     Accordion,
@@ -96,12 +158,19 @@ import {
     Input,
     RadioGroup,
     Checkbox,
+    Carousel,
+    Slide,
     Select,
     Slider,
     Modal,
 } from './components/Ui';
-import Header from './components/Header/Header.vue';
-import Footer from './components/Footer/Footer.vue';
+import {
+    Image,
+    ImageGallery,
+    VideoEmbed,
+    ImageInterface,
+} from './components/Media';
+import { Footer, Header, BackgroundSection } from './layout';
 
 const test = ref('');
 const radioSelected = ref();
@@ -109,6 +178,80 @@ const checkboxSelected = ref([]);
 const modal = ref(false);
 const select = ref({ value: null, preview: 'placeholder' });
 const slider = ref(50);
+const carouselCurrent = ref(0);
+
+const carouselOptionsX = {
+    sm: {
+        slidesToScroll: 1,
+        speed: 6,
+        align: 'start',
+        containScroll: 'trimSnaps',
+    },
+    md: {
+        slidesToScroll: 1,
+        speed: 6,
+        align: 'start',
+        containScroll: 'trimSnaps',
+    },
+    lg: {
+        slidesToScroll: 2,
+        speed: 6,
+        align: 'start',
+        containScroll: 'trimSnaps',
+    },
+    xl: {
+        slidesToScroll: 3,
+        speed: 6,
+        align: 'start',
+        containScroll: 'trimSnaps',
+    },
+    '2xl': {
+        slidesToScroll: 4,
+        speed: 6,
+        align: 'start',
+        containScroll: 'trimSnaps',
+    },
+};
+
+const image: ImageInterface = {
+    id: 0,
+    original_url:
+        'https://images.unsplash.com/photo-1648602884790-4435152a69db?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+};
+const images = [
+    {
+        id: 0,
+        original_url:
+            'https://images.unsplash.com/photo-1648598200360-d77ba0fff312?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
+    },
+    {
+        id: 1,
+        original_url:
+            'https://images.unsplash.com/photo-1648602884790-4435152a69db?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+    },
+    {
+        id: 2,
+        original_url:
+            'https://images.unsplash.com/photo-1648598200360-d77ba0fff312?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
+    },
+    {
+        id: 3,
+        original_url:
+            'https://images.unsplash.com/photo-1648602884790-4435152a69db?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+    },
+    {
+        id: 4,
+        original_url:
+            'https://images.unsplash.com/photo-1648598200360-d77ba0fff312?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
+    },
+    {
+        id: 5,
+        original_url:
+            'https://images.unsplash.com/photo-1648602884790-4435152a69db?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+    },
+];
+const video =
+    '<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>';
 
 const selectItems = [
     {
