@@ -1,15 +1,14 @@
 <template>
-     <div v-html="rep.text" >
-     </div>
+    <img :src="rep.image.url" v-if="rep.image.url" />
 </template>
 
 <script lang="ts" setup>
 import { PropType } from 'vue';
-import { TextFull } from '../../types/repeatables';
+import { ImageFull } from '../../types/repeatables';
 
 const props = defineProps({
     rep: {
-        type: Object as PropType<TextFull>,
+        type: Object as PropType<ImageFull>,
         required: true,
     },
 });
