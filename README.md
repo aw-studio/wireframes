@@ -1,11 +1,11 @@
-# Admin Laravel Package
+# Wireframes Package
 
 ## Setup
 
 Install the package via composer
 
 ```shell
-composer require macramejs/admin-laravel
+composer require aw-studio/wireframes
 ```
 
 Create the applications:
