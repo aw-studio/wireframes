@@ -1,3 +1,4 @@
+import { Media } from "./resources";
 
 export type Repeatable<M> = {
     type: string,
@@ -6,7 +7,8 @@ export type Repeatable<M> = {
 
 export type Repeatables = (
     TextFullRepeatable | 
-    TextImageRepeatable
+    TextImageRepeatable |
+    ImageFullRepeatable
 )[];
 
 // TextFull
@@ -23,4 +25,11 @@ export interface TextImage {
     image: string
 }
 export type TextImageRepeatable = Repeatable<TextImage>;
+
+// ImageFullRepeatable
+
+export interface ImageFull {
+    image: Media
+}
+export type ImageFullRepeatable = Repeatable<ImageFull>;
 

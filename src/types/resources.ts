@@ -31,3 +31,16 @@ export interface Page {
     update_at: DateTime,
 }
 export type PageResource = Resource<Page>;
+
+export type Media = {
+    id?: number,
+    display_name: string,
+    group: string,
+    disk: string,
+    filepath: string,
+    filename: string,
+    mimetype: string,
+    size: number,
+    url?: string,
+}
+export type MediaResource = Resource<File>;
