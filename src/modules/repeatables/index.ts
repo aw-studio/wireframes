@@ -1,14 +1,14 @@
 export { default as Repeatables } from './Repeatables.vue';
 
-import TextFullRepeatable from "./TextFullRepeatable.vue";
-import ImageFullRepeatable from "./ImageFullRepeatable.vue";
-import CardsRepeatable from "./CardsRepeatable.vue";
+import TextFull from "./RepTextFull.vue";
+import ImageFull from "./RepImageFull.vue";
+import Cards from "./RepCards.vue";
 
 // Add all repeatable components to the following object under the corresponding 
 // key:
 
 export const repeatableComponents = {
-    text_full: TextFullRepeatable,
-    image_full: ImageFullRepeatable,
-    cards: CardsRepeatable
+    text_full: TextFull,
+    image_full: ImageFull,
+    cards: Cards
 }
