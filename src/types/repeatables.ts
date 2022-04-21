@@ -26,10 +26,17 @@ export interface TextImage {
 }
 export type TextImageRepeatable = Repeatable<TextImage>;
 
-// ImageFullRepeatable
+// ImageFull
 
 export interface ImageFull {
     image: Media
 }
 export type ImageFullRepeatable = Repeatable<ImageFull>;
 
+// InfoBox
+
+export interface InfoBox {
+    title: string;
+    text: string;
+}
+export type InfoBoxRepeatable = Repeatable<InfoBox>;
