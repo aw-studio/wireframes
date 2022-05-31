@@ -37,12 +37,14 @@ class MakeWireframesCommand extends BaseMakeCommand
     {
         //
         $this->makeResources();
+        $this->makeInertiaMiddleware();
 
         // Make Admin
         Artisan::call('make:admin', ['name' => 'admin']);
         Artisan::call('make:media-manager', ['app' => 'admin', 'name' => 'media']);
         Artisan::call('make:page-builder', ['app' => 'admin', 'name' => 'page']);
         Artisan::call('make:nav-builder', ['app' => 'admin']);
+        
 
         $this->line('Created Macrame Admin application and a wireframes application.');
         $this->line("Just a view more steps to get started:\n");
@@ -64,6 +66,43 @@ class MakeWireframesCommand extends BaseMakeCommand
         $this->info('password: secret');
 
         return 0;
+    }
+
+    /**
+     * Make the inertia middleware
+     *
+     * @return void
+     */
+    protected function makeInertiaMiddlewlare()
+    {
+        Artisan::call('inertia:middleware');
+        $insert = "return array_merge(parent::share(\$request), [
+            'nav' => [
+                'main' => new NavResource(
+                    NavItem::whereRoot()->where('type', NavType::Main->value)->get()
+                ),
+                'footer' => new NavResource(
+                    NavItem::whereRoot()->where('type', NavType::Footer->value)->get()
+                ),
+            ]
+        ]);";
+        $search = 'return array_merge(parent::share($request), [
+            //
+        ]);';
+
+        $path = app_path('Http/Middleware/HandleInertiaRequests.php');
+        $content =$this->files->get($path);
+        $content = Str::replace($search, $insert, $content);
+        $this->files->put($path, $content);
+
+        $insert = '            \App\Http\Middleware\HandleInertiaRequests::class,';
+        $after = '\Illuminate\Routing\Middleware\SubstituteBindings::class,';
+        $kernelPath = app_path('Http/Kernel.php');
+        $this->insertAfter(
+            path: $kernelPath,
+            insert: $insert,
+            after: $after
+        );
     }
 
     /**
