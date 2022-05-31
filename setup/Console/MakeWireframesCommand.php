@@ -73,7 +73,7 @@ class MakeWireframesCommand extends BaseMakeCommand
      *
      * @return void
      */
-    protected function makeInertiaMiddlewlare()
+    protected function makeInertiaMiddleware()
     {
         Artisan::call('inertia:middleware');
         $insert = "return array_merge(parent::share(\$request), [
@@ -94,6 +94,12 @@ class MakeWireframesCommand extends BaseMakeCommand
         $content =$this->files->get($path);
         $content = Str::replace($search, $insert, $content);
         $this->files->put($path, $content);
+
+        $insert = 'use App\Models\NavItem;
+use App\Models\Types\NavType;
+use App\Http\Resources\NavResource;';
+        $before = 'use Illuminate\Http\Request;';
+        $this->insertBefore($path, $insert, $before);
 
         $insert = '            \App\Http\Middleware\HandleInertiaRequests::class,';
         $after = '\Illuminate\Routing\Middleware\SubstituteBindings::class,';
