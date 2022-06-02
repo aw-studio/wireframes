@@ -39,7 +39,7 @@ export interface Infobox {
     title: string
     text: string,
     link: {
-        url: string,
+        link: string,
         text: string
     },
 }
