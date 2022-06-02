@@ -9,3 +9,5 @@ export { default as Slider } from './Slider.vue';
 export { default as Modal } from './Modal.vue';
 export { default as Carousel } from './Carousel/Carousel.vue';
 export { default as Slide } from './Carousel/Slide.vue';
+
+export { default as Infobox } from './Infobox.vue';

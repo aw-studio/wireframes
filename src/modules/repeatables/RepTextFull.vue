@@ -1,11 +1,10 @@
 <template>
-     <div v-html="rep.text" >
-     </div>
+    <div v-html="rep.text" class="container"></div>
 </template>
 
 <script lang="ts" setup>
-import { PropType } from 'vue';
-import { TextFull } from '../../types/repeatables';
+import { PropType } from "vue";
+import { TextFull } from "../../types/repeatables";
 
 const props = defineProps({
     rep: {
