@@ -33,3 +33,14 @@ export interface ImageFull {
 }
 export type ImageFullRepeatable = Repeatable<ImageFull>;
 
+// Infobox
+
+export interface Infobox {
+    title: string
+    text: string,
+    link: {
+        url: string,
+        text: string
+    },
+}
+export type InfoboxRepeatable = Repeatable<Infobox>;
