@@ -2,7 +2,7 @@
     <div class="container">
         <Infobox
             :title="rep.title"
-            :link="rep.link.url"
+            :link="rep.link.link"
             :link-text="rep.link.text"
         >
             {{ rep.text }}
