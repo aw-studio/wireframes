@@ -22,31 +22,10 @@
 </template>
 
 <script lang="ts" setup>
-const navigation = [
-    {
-        name: 'Impressum',
-        link: '',
-        children: null,
-    },
-    {
-        name: 'Datenschutz',
-        link: '',
-        children: null,
-    },
-    {
-        name: 'AGBs',
-        link: '',
-        children: null,
-    },
-    {
-        name: 'Urheberrechte',
-        link: '',
-        children: null,
-    },
-    {
-        name: 'Haftungshinweise',
-        link: '',
-        children: null,
-    },
-];
+import { usePage } from "@inertiajs/inertia-vue3";
+import { computed } from "vue";
+
+const navigation = computed(() => {
+    return usePage().props.value?.nav?.footer?.data?.items || [];
+});
 </script>
