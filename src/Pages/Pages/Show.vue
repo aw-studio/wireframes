@@ -1,11 +1,12 @@
 <template>
 	<Header />
 	<main class="mt-[90px] lg:mt-[189px]">
-		<img
-			v-if="page.attributes.header"
+		<Image
 			:src="page.attributes.header.url"
-			class="object-cover w-full h-auto max-h-64"
+			v-if="page.attributes.header.url"
+			class="w-full h-64"
 		/>
+
 		<div class="container">
 			<h1>
 				{{ page.attributes.h1 }}
@@ -21,6 +22,7 @@ import { PropType } from 'vue';
 import { Footer, Header } from '../../layout';
 import { Page } from '../../types/resources';
 import { Repeatables } from '../../modules/repeatables';
+import Image from '@app/components/Ui/Image.vue';
 
 const props = defineProps({
 	page: {
