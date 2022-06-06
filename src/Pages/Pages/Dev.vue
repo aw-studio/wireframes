@@ -14,8 +14,8 @@
         </div>
         <Repeatables :repeatables="page.content" />
 
-        <Map :zoom="4" :lat="10" :lng="52" />
-        <Accordion :content="content" />
+        <Accordion :items="accordionItems" />
+        <!-- <Map :zoom="4" :lat="10" :lng="52" /> -->
         <!-- 
         <div class="w-full">
             <Slider v-model="slider" min="0" max="100" />
@@ -107,7 +107,7 @@ import { Page } from '../../types/resources';
 import { Repeatables } from '../../modules/repeatables';
 import Image from '../../components/Ui/Image.vue';
 import Map from '../../components/Map/Map.vue';
-import Accordion from '../../components/Ui/Accordion.vue';
+import { Accordion } from '../../components/Ui';
 import Slider from '../../components/Ui/Slider.vue';
 import Button from '../../components/Ui/Button.vue';
 import Modal from '../../components/Ui/Modal.vue';
@@ -116,6 +116,7 @@ import VideoEmbed from '../../components/Media/VideoEmbed.vue';
 import ImageGallery from '../../components/Media/ImageGallery.vue';
 import Carousel from '../../components/Ui/Carousel/Carousel.vue';
 import Slide from '../../components/Ui/Carousel/Slide.vue';
+import { AccordionItem } from '../../components/Ui/Accordion';
 
 const props = defineProps({
     page: {
@@ -123,6 +124,13 @@ const props = defineProps({
         type: Object as PropType<Page>,
     },
 });
+
+const accordionItems: AccordionItem[] = [
+    {
+        title: 'Foo',
+        text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur ratione reiciendis ipsum distinctio eligendi quaerat, aperiam cupiditate facilis ea vero molestiae. Pariatur suscipit expedita ratione voluptates quisquam excepturi nam ipsum.',
+    },
+];
 </script>
 
 <style>
