@@ -2,7 +2,7 @@
     <div class="w-full grid grid-cols-1 gap-2.5">
         <Disclosure
             as="div"
-            v-for="item in content"
+            v-for="item in items"
             class="w-full"
             v-slot="{ open }"
         >
@@ -27,8 +27,7 @@
                 </Button>
             </DisclosureButton>
             <DisclosurePanel class="px-5 border border-secondary-100 py-7">
-                <!-- TODO: Block Interpreter later -->
-                <div v-html="item.content"></div>
+                <div v-html="item.text"></div>
             </DisclosurePanel>
         </Disclosure>
     </div>
@@ -36,11 +35,14 @@
 
 <script lang="ts" setup>
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
-import { Button } from './';
+import { PropType } from 'vue';
+import { AccordionItem } from '.';
+import { Button } from '..';
 
 const props = defineProps({
-    content: {
-        type: Object,
+    items: {
+        type: Array as PropType<AccordionItem[]>,
+        required: true,
     },
 });
 </script>

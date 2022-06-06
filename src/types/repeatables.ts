@@ -1,3 +1,4 @@
+import { AccordionItem } from "../components/Ui/Accordion";
 import { Media } from "./resources";
 
 export type Repeatable<M> = {
@@ -63,10 +64,6 @@ export type CardsRepeatable = Repeatable<Cards>;
 
 
 // Accordion
-export interface AccordionItem {
-    title: string,
-    text: string,
-}
 export interface Accordion {
     items: AccordionItem[]
 }
