@@ -18,7 +18,7 @@ export default function useStyles() {
     /**
      * Styles that describe how the map should look (get from snazzy maps)
      */
-    const mapStyles = [
+     const mapStyles: google.maps.MapTypeStyle[] = [
         {
             "featureType": "water",
             "elementType": "geometry",
