@@ -27,8 +27,8 @@ export interface Page {
     attributes: { [ k: string ]: any },
     content: Repeatables,
     template: string,
-    created_at: DateTime,
-    update_at: DateTime,
+    created_at: string,
+    update_at: string,
 }
 export type PageResource = Resource<Page>;
 

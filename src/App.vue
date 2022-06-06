@@ -3,7 +3,8 @@
 </template>
 
 <script setup lang="ts">
-import Page from './Pages/Home/Show.vue';
+import Page from './Pages/Pages/Dev.vue';
+import { Page as TPage } from './types/resources';
 
 const content = [
     {
@@ -20,10 +21,17 @@ const attributes = {
     title: 'Hello World',
 };
 
-const page = {
+const page: TPage = {
+    id: 1,
+    attributes: {
+        header: {
+            url: null,
+        },
+    },
     content,
     template,
-    attributes,
+    created_at: '2022',
+    update_at: '2022',
 };
 
 const images = [

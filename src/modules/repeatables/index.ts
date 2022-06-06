@@ -5,6 +5,7 @@ import TextImage from "./RepTextImage.vue";
 import ImageFull from "./RepImageFull.vue";
 import Cards from "./RepCards.vue";
 import Infobox from "./RepInfobox.vue";
+import Block from "./RepBlock.vue";
 
 // Add all repeatable components to the following object under the corresponding 
 // key:
@@ -15,4 +16,5 @@ export const repeatableComponents = {
     image_full: ImageFull,
     cards: Cards,
     info_box: Infobox,
+    block: Block,
 }

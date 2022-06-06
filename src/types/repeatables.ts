@@ -12,24 +12,22 @@ export type Repeatables = (
 )[];
 
 export interface Image {
-    link: string,
+    url: string,
     alt: string,
     title: string,
 }
 export interface Link {
-    link: string,
+    url: string,
     text: string
 }
 
 // TextFull
-
 export interface TextFull {
     text: string
 }
 export type TextFullRepeatable = Repeatable<TextFull>;
 
 // TextImage
-
 export interface TextImage {
     text: string,
     image: string
@@ -37,14 +35,12 @@ export interface TextImage {
 export type TextImageRepeatable = Repeatable<TextImage>;
 
 // ImageFullRepeatable
-
 export interface ImageFull {
     image: Media
 }
 export type ImageFullRepeatable = Repeatable<ImageFull>;
 
 // Infobox
-
 export interface Infobox {
     title: string
     text: string,
@@ -53,7 +49,6 @@ export interface Infobox {
 export type InfoboxRepeatable = Repeatable<Infobox>;
 
 // Cards
-
 export interface Card {
     title: string,
     text: string,
@@ -65,3 +60,14 @@ export interface Cards {
     items: Card[]
 }
 export type CardsRepeatable = Repeatable<Cards>;
+
+
+// Accordion
+export interface AccordionItem {
+    title: string,
+    text: string,
+}
+export interface Accordion {
+    items: AccordionItem[]
+}
+export type AccordionRepeatable = Repeatable<Accordion>;

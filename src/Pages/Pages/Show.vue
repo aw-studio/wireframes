@@ -22,7 +22,7 @@ import { PropType } from 'vue';
 import { Footer, Header } from '../../layout';
 import { Page } from '../../types/resources';
 import { Repeatables } from '../../modules/repeatables';
-import Image from '@app/components/Ui/Image.vue';
+import Image from '../../components/Ui/Image.vue';
 
 const props = defineProps({
 	page: {
