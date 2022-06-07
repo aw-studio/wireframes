@@ -20,6 +20,7 @@ export interface Image {
 export interface Link {
     url: string,
     text: string
+    new_tab: boolean
 }
 
 // TextFull
@@ -68,3 +69,14 @@ export interface Accordion {
     items: AccordionItem[]
 }
 export type AccordionRepeatable = Repeatable<Accordion>;
+
+// LogoWall
+export interface LogoWallItem {
+    name: string,
+    link?: Link,
+    image?: Image,
+}
+export interface LogoWall {
+    items: LogoWallItem[]
+}
+export type LogoWallRepeatable = Repeatable<LogoWall>;
