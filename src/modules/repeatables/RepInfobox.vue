@@ -2,7 +2,7 @@
     <div class="container">
         <Infobox
             :title="rep.title"
-            :link="rep.link.link"
+            :link="rep.link.url"
             :link-text="rep.link.text"
         >
             {{ rep.text }}
@@ -11,9 +11,9 @@
 </template>
 
 <script lang="ts" setup>
-import { PropType } from "vue";
-import { Infobox as TInfobox } from "../../types/repeatables";
-import Infobox from "../../components/Ui/Infobox.vue";
+import { PropType } from 'vue';
+import { Infobox as TInfobox } from '../../types/repeatables';
+import Infobox from '../../components/Ui/Infobox.vue';
 
 const props = defineProps({
     rep: {
