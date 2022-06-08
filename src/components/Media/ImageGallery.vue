@@ -1,24 +1,24 @@
 <template>
-    <div v-if="images.length > 0" class="">
+    <div v-if="images.length > 0" class="my-16">
         <h3 v-if="title">{{ title }}</h3>
         <div class="hidden md:grid md:grid-cols-12 md:gap-5">
             <button
                 v-for="(image, index) in images"
                 :key="index"
-                @click="toggleGallery(image.id, index)"
+                @click="toggleGallery(image.url, index)"
                 class="relative col-span-12 transition-all duration-300 cursor-pointer md:col-span-6 lg:col-span-4 xl:col-span-3 focus:outline-none focus:ring focus:ring-primary"
             >
-                <Image :image="image" class="object-cover w-full h-64" />
+                <Image :src="image.url" />
             </button>
         </div>
         <ImageGalleryModal v-model="openModal">
             <div
-                :id="`${image.id}_${index}`"
+                :id="`${image.url}_${index}`"
                 v-for="(image, index) in images"
                 :key="index"
                 class="mb-20"
             >
-                <Image :image="image" class="w-full" />
+                <Image :src="image.url" class="w-full" />
             </div>
         </ImageGalleryModal>
     </div>
@@ -26,11 +26,14 @@
 
 <script lang="ts" setup>
 import { PropType, ref, nextTick } from 'vue';
-import { ImageInterface, ImageGalleryModal, Image } from './';
+import { ImageGalleryModal } from './';
 
-const props = defineProps({
+import Image from '../Ui/Image.vue';
+import { Image as TImage } from '../../types/repeatables';
+
+defineProps({
     images: {
-        type: Array as PropType<ImageInterface[]>,
+        type: Array as PropType<TImage[]>,
         default: () => [],
     },
     title: {
@@ -40,11 +43,11 @@ const props = defineProps({
 });
 const openModal = ref(false);
 
-const toggleGallery = (imageId: number, index: number): void => {
+const toggleGallery = (url: string, index: number): void => {
     openModal.value = true;
 
     nextTick(() => {
-        const scrollElement = document.getElementById(`${imageId}_${index}`);
+        const scrollElement = document.getElementById(`${url}_${index}`);
         setTimeout(() => {
             scrollElement?.scrollIntoView({
                 behavior: 'smooth',

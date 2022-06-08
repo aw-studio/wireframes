@@ -1,5 +1,4 @@
 import { AccordionItem } from "../components/Ui/Accordion";
-import { Media } from "./resources";
 
 export type Repeatable<M> = {
     type: string,
@@ -24,31 +23,31 @@ export interface Link {
 }
 
 // TextFull
-export interface TextFull {
+export interface RepTextFull {
     text: string
 }
-export type TextFullRepeatable = Repeatable<TextFull>;
+export type TextFullRepeatable = Repeatable<RepTextFull>;
 
 // TextImage
-export interface TextImage {
+export interface RepTextImage {
     text: string,
-    image: string
+    image: Image
 }
-export type TextImageRepeatable = Repeatable<TextImage>;
+export type TextImageRepeatable = Repeatable<RepTextImage>;
 
-// ImageFullRepeatable
-export interface ImageFull {
-    image: Media
+// RepImageFull
+export interface RepImageFull {
+    image: Image
 }
-export type ImageFullRepeatable = Repeatable<ImageFull>;
+export type ImageFullRepeatable = Repeatable<RepImageFull>;
 
 // Infobox
-export interface Infobox {
+export interface RepInfobox {
     title: string
     text: string,
     link: Link,
 }
-export type InfoboxRepeatable = Repeatable<Infobox>;
+export type InfoboxRepeatable = Repeatable<RepInfobox>;
 
 // Cards
 export interface Card {
@@ -57,18 +56,19 @@ export interface Card {
     image?: Image,
     link?: Link,
 }
-export interface Cards {
+export interface RepCards {
     headline: string
     items: Card[]
 }
-export type CardsRepeatable = Repeatable<Cards>;
+export type CardsRepeatable = Repeatable<RepCards>;
 
 
 // Accordion
-export interface Accordion {
+export interface RepAccordion {
+    headline: string,
     items: AccordionItem[]
 }
-export type AccordionRepeatable = Repeatable<Accordion>;
+export type AccordionRepeatable = Repeatable<RepAccordion>;
 
 // LogoWall
 export interface LogoWallItem {
@@ -76,7 +76,31 @@ export interface LogoWallItem {
     link?: Link,
     image?: Image,
 }
-export interface LogoWall {
+export interface RepLogoWall {
+    headline: string,
     items: LogoWallItem[]
 }
-export type LogoWallRepeatable = Repeatable<LogoWall>;
+export type LogoWallRepeatable = Repeatable<RepLogoWall>;
+
+// GridGallery
+export interface GridGalleryItem {
+    name: string,
+    link?: Link,
+    image?: Image,
+}
+export interface RepGridGallery {
+    headline: string,
+    items: GridGalleryItem[]
+}
+export type GridGalleryRepeatable = Repeatable<RepGridGallery>;
+
+// ImageCarousel
+export interface ImageCarouselItem {
+    image?: Image,
+}
+export interface RepImageCarousel {
+    items: ImageCarouselItem[]
+}
+export type ImageCarouselRepeatable = Repeatable<RepImageCarousel>;
+
+

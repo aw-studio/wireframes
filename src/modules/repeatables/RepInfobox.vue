@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container my-16 flex justify-center">
         <Infobox
             :title="rep.title"
             :link="rep.link.url"
@@ -12,12 +12,12 @@
 
 <script lang="ts" setup>
 import { PropType } from 'vue';
-import { Infobox as TInfobox } from '../../types/repeatables';
+import { RepInfobox } from '../../types/repeatables';
 import Infobox from '../../components/Ui/Infobox.vue';
 
 const props = defineProps({
     rep: {
-        type: Object as PropType<TInfobox>,
+        type: Object as PropType<RepInfobox>,
         required: true,
     },
 });

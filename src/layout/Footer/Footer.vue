@@ -2,8 +2,9 @@
     <footer class="w-screen py-12 mt-auto bg-secondary-100">
         <div class="container">
             <h3>
-                <span class="inline-block">E-Mail</span> <br />
-                <span class="inline-block">Telefon</span>
+                <span class="inline-block">E-Mail: {{ partials.email }}</span>
+                <br />
+                <span class="inline-block">Telefon {{ partials.phone }}</span>
             </h3>
             <div>
                 <span class="inline-block">Firma XYZ</span> <br />
@@ -29,5 +30,10 @@ const navigation = computed(() => {
     let nav: any = usePage().props.value?.nav;
 
     return nav?.footer?.data?.items || [];
+});
+const partials = computed(() => {
+    let partials: any = usePage().props.value?.partials;
+
+    return partials.footer;
 });
 </script>

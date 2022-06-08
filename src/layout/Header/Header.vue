@@ -20,6 +20,7 @@ import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
 import Logo from './Logo.vue';
 import NavigationDesktop from './NavigationDesktop.vue';
 import NavigationMobile from './NavigationMobile.vue';
+import Image from '@app/components/Ui/Image.vue';
 
 const navigation = computed(() => {
     let nav: any = usePage().props.value?.nav;

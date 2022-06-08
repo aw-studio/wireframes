@@ -1,13 +1,11 @@
 <template>
-    <div>
-        <template v-for="(repeatable, key) in repeatables" :key="key">
-            <component
-                v-if="repeatable.type in repeatableComponents"
-                :is="repeatableComponents[repeatable.type]"
-                :rep="repeatable.value"
-            />
-        </template>
-    </div>
+    <template v-for="(repeatable, key) in repeatables" :key="key">
+        <component
+            v-if="repeatable.type in repeatableComponents"
+            :is="repeatableComponents[repeatable.type]"
+            :rep="repeatable.value"
+        />
+    </template>
 </template>
 
 <script lang="ts" setup>

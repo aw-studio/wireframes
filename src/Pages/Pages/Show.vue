@@ -8,13 +8,13 @@
         />
 
         <div class="container">
-            <h1>
+            <h1 class="my-16">
                 {{ page.attributes.h1 }}
             </h1>
         </div>
         <Repeatables :repeatables="page.content" />
     </main>
-    <Footer />
+    <Footer :page="page" />
 </template>
 
 <script setup lang="ts">
