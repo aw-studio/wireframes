@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-secondary-100 p-8">
+    <div class="bg-secondary-100 p-8 max-w-2xl">
         <div
             v-if="title"
             v-html="title"
@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-import Button from "./Button.vue";
+import Button from './Button.vue';
 const props = defineProps({
     title: {
         type: String,

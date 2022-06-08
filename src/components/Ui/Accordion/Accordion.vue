@@ -13,33 +13,44 @@
                     {{ item.title }}
                 </h3>
                 <Button secondary square>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="-5 -8 24 24"
-                        width="24"
-                        fill="currentColor"
-                        :class="{ 'rotate-180': open }"
+                    <div
+                        class="text-white transform duration-200"
+                        :class="{
+                            ' rotate-180': open,
+                        }"
                     >
-                        <path
-                            d="M7.071 5.314l4.95-4.95a1 1 0 1 1 1.414 1.414L7.778 7.435a1 1 0 0 1-1.414 0L.707 1.778A1 1 0 1 1 2.121.364l4.95 4.95z"
-                        ></path>
-                    </svg>
+                        <svg
+                            width="24"
+                            height="24"
+                            stroke-width="1.5"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M6 9L12 15L18 9"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                        </svg>
+                    </div>
                 </Button>
             </DisclosureButton>
             <DisclosurePanel class="px-5 border border-secondary-100 py-7">
-                <div v-html="item.text"></div>
+                {{ item.text }}
             </DisclosurePanel>
         </Disclosure>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
-import { PropType } from 'vue';
-import { AccordionItem } from '.';
-import { Button } from '..';
+import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
+import { PropType } from "vue";
+import { AccordionItem } from ".";
+import { Button } from "..";
 
-const props = defineProps({
+defineProps({
     items: {
         type: Array as PropType<AccordionItem[]>,
         required: true,

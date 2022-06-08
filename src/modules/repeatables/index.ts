@@ -8,8 +8,9 @@ import Cards from "./RepCards.vue";
 import Infobox from "./RepInfobox.vue";
 import Block from "./RepBlock.vue";
 import Accordion from "./RepAccordion.vue";
-import Carousel from "./RepCarousel.vue";
+import ImageCarousel from "./RepImageCarousel.vue";
 import LogoWall from "./RepLogoWall.vue";
+import GridGallery from "./RepGridGallery.vue";
 
 // Add all repeatable components to the following object under the corresponding 
 // key:
@@ -22,6 +23,7 @@ export const repeatableComponents = {
     info_box: Infobox,
     block: Block,
     accordion: Accordion,
-    carousel: Carousel,
+    image_carousel: ImageCarousel,
     logo_wall: LogoWall,
+    grid_gallery: GridGallery,
 }

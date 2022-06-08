@@ -27,8 +27,10 @@ export interface Page {
     attributes: { [ k: string ]: any },
     content: Repeatables,
     template: string,
-    created_at: string,
-    update_at: string,
+    meta: {
+        title: string,
+        description: string
+    }
 }
 export type PageResource = Resource<Page>;
 

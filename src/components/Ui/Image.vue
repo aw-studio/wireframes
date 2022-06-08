@@ -1,5 +1,10 @@
 <template>
-    <div class="overflow-hidden relative">
+    <div
+        class="relative"
+        :class="{
+            'overflow-hidden': !overflow,
+        }"
+    >
         <img
             :src="thumb"
             class="lazyload lazyload-animation w-full object-cover h-auto max-h-full max-w-full"
@@ -14,8 +19,8 @@
 </template>
 
 <script lang="ts" setup>
-import 'lazysizes';
-import { computed, PropType } from 'vue';
+import "lazysizes";
+import { computed, PropType } from "vue";
 
 const props = defineProps({
     src: {
@@ -32,6 +37,10 @@ const props = defineProps({
         type: Boolean,
         default: false,
     },
+    overflow: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 const thumb = computed(() => {
@@ -40,8 +49,8 @@ const thumb = computed(() => {
 });
 
 const srcset = computed(() => {
-    let srcset = '';
-    props.sizes.forEach(size => {
+    let srcset = "";
+    props.sizes.forEach((size) => {
         srcset += `${props.src}?w=${size} ${size}w, `;
     });
     return srcset;
