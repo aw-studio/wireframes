@@ -78,10 +78,10 @@ class MakeWireframesCommand extends BaseMakeCommand
         $insert = "return array_merge(parent::share(\$request), [
             'nav' => [
                 'main' => new NavResource(
-                    NavItem::whereRoot()->where('type', NavType::Main->value)->get()
+                    Menu::where('type', 'main')->first()->items()->whereRoot()->get()
                 ),
                 'footer' => new NavResource(
-                    NavItem::whereRoot()->where('type', NavType::Footer->value)->get()
+                    Menu::where('type', 'footer')->first()->items()->whereRoot()->get()
                 ),
             ],
         ]);";
