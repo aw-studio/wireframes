@@ -8,9 +8,9 @@
 </template>
 
 <script lang="ts" setup>
-import { RepAccordion } from "@app/types/repeatables";
-import { PropType } from "vue";
-import { Accordion } from "../../components/Ui/Accordion";
+import { RepAccordion } from '@/types/repeatables';
+import { PropType } from 'vue';
+import { Accordion } from '../../components/Ui/Accordion';
 
 const props = defineProps({
     rep: {

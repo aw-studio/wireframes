@@ -9,9 +9,9 @@
 </template>
 
 <script lang="ts" setup>
-import Carousel from '@app/components/Ui/Carousel/Carousel.vue';
-import Slide from '@app/components/Ui/Carousel/Slide.vue';
-import Image from '@app/components/Ui/Image.vue';
+import Carousel from '@/components/Ui/Carousel/Carousel.vue';
+import Slide from '@/components/Ui/Carousel/Slide.vue';
+import Image from '@/components/Ui/Image.vue';
 import { PropType } from 'vue';
 import { RepImageCarousel } from '../../types/repeatables';
 
