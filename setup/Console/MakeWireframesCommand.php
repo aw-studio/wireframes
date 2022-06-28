@@ -94,8 +94,7 @@ class MakeWireframesCommand extends BaseMakeCommand
         $content = Str::replace($search, $insert, $content);
         $this->files->put($path, $content);
 
-        $insert = 'use App\Models\NavItem;
-use App\Models\Types\NavType;
+        $insert = 'use App\Models\Menu;
 use App\Http\Resources\NavResource;';
         $before = 'use Illuminate\Http\Request;';
         $this->insertBefore($path, $insert, $before);
