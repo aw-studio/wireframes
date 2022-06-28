@@ -122,12 +122,12 @@ use App\Http\Resources\NavResource;';
 
         // webpack.mix.js
         $insert = "// App
-mix.ts('resources/app/js/app.ts', 'public/js/app').vue();
-mix.postCss('resources/app/css/app.css', 'public/css/app', [
+mix.ts('resources/js/app.ts', 'public/js/app').vue();
+mix.postCss('resources/css/app.css', 'public/css/app', [
     tailwindcss('./app.tailwind.config.js'),
 ]);
 mix.alias({
-    '@app': path.join(__dirname, 'resources/app/js'),
+    '@': path.join(__dirname, 'resources/js'),
 });";
         $replace = "mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
@@ -145,26 +145,26 @@ const tailwindcss = require('tailwindcss');";
         // tailwind.config.js
         $this->files->copy(__DIR__.'/../../tailwind.config.js', base_path('app.tailwind.config.js'));
         $content = $this->files->get(base_path('app.tailwind.config.js'));
-        $content = str_replace("content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],", "content: ['./resources/app/**/*.vue'],", $content);
+        $content = str_replace("content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],", "content: ['./resources/**/*.vue'],", $content);
         $this->files->put(base_path('app.tailwind.config.js'), $content);
 
         // setup resources
-        $this->files->ensureDirectoryExists(resource_path('app/css'));
-        $this->files->ensureDirectoryExists(resource_path('app/js'));
+        $this->files->ensureDirectoryExists(resource_path('css'));
+        $this->files->ensureDirectoryExists(resource_path('js'));
 
         // view
         $this->files->copy(__DIR__.'/../../src/app.blade.php', resource_path('views/app.blade.php'));
 
         // css
-        $this->files->copy(__DIR__.'/../../src/index.css', resource_path('app/css/app.css'));
+        $this->files->copy(__DIR__.'/../../src/index.css', resource_path('css/app.css'));
 
         // js
-        $this->files->copyDirectory(__DIR__.'/../../src/components', resource_path('app/js/components'));
-        $this->files->copyDirectory(__DIR__.'/../../src/layout', resource_path('app/js/layout'));
-        $this->files->copyDirectory(__DIR__.'/../../src/modules', resource_path('app/js/modules'));
-        $this->files->copyDirectory(__DIR__.'/../../src/types', resource_path('app/js/types'));
-        $this->files->copyDirectory(__DIR__.'/../../src/Pages', resource_path('app/js/Pages'));
-        $this->files->copy(__DIR__.'/../../src/app.ts', resource_path('app/js/app.ts'));
+        $this->files->copyDirectory(__DIR__.'/../../src/components', resource_path('js/components'));
+        $this->files->copyDirectory(__DIR__.'/../../src/layout', resource_path('js/layout'));
+        $this->files->copyDirectory(__DIR__.'/../../src/modules', resource_path('js/modules'));
+        $this->files->copyDirectory(__DIR__.'/../../src/types', resource_path('js/types'));
+        $this->files->copyDirectory(__DIR__.'/../../src/Pages', resource_path('js/Pages'));
+        $this->files->copy(__DIR__.'/../../src/app.ts', resource_path('js/app.ts'));
     }
 
     /**
