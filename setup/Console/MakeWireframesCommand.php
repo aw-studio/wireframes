@@ -40,7 +40,7 @@ class MakeWireframesCommand extends BaseMakeCommand
         $this->makeInertiaMiddleware();
 
         // Make Admin
-        if (! $this->confirm('Did you already install the Macrame Admin API already installed?', true)) {
+        if (! $this->confirm('Did you already install the Macrame Admin API scaffolding?', true)) {
             Artisan::call('make:admin');
             $this->line("Installed Macrame Admin API for you.\n");
         }
