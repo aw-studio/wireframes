@@ -12,11 +12,11 @@
                 {{ page.attributes.h1 }}
             </h1>
         </div>
-        <Repeatables :repeatables="page.content" />
+        <ContentResolver :contentSections="page.content" />
 
         <Accordion :items="accordionItems" />
         <!-- <Map :zoom="4" :lat="10" :lng="52" /> -->
-        <!-- 
+        <!--
         <div class="w-full">
             <Slider v-model="slider" min="0" max="100" />
             {{ slider }}
@@ -104,7 +104,7 @@
 import { PropType } from 'vue';
 import { Footer, Header } from '../../layout';
 import { Page } from '../../types/resources';
-import { Repeatables } from '../../modules/repeatables';
+import { ContentResolver } from '../../modules/content';
 import Image from '../../components/Ui/Image.vue';
 import Map from '../../components/Map/Map.vue';
 import { Accordion } from '../../components/Ui';

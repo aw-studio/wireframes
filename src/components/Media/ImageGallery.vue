@@ -29,7 +29,7 @@ import { PropType, ref, nextTick } from 'vue';
 import { ImageGalleryModal } from './';
 
 import Image from '../Ui/Image.vue';
-import { Image as TImage } from '../../types/repeatables';
+import { Image as TImage } from '../../types/content';
 
 defineProps({
     images: {
