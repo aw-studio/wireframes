@@ -148,7 +148,7 @@ use App\Http\Resources\NavResource;';
         $this->files->ensureDirectoryExists(resource_path('js'));
 
         // view
-        $this->files->copy(__DIR__.'/../../src/app.blade.php', resource_path('views/app.blade.php'));
+        $this->files->copy(__DIR__.'/../../stubs/views/app.blade.php', resource_path('views/app.blade.php'));
 
         // css
         $this->files->copy(__DIR__.'/../../src/index.css', resource_path('css/app.css'));
@@ -159,7 +159,8 @@ use App\Http\Resources\NavResource;';
         $this->files->copyDirectory(__DIR__.'/../../src/modules', resource_path('js/modules'));
         $this->files->copyDirectory(__DIR__.'/../../src/types', resource_path('js/types'));
         $this->files->copyDirectory(__DIR__.'/../../src/Pages', resource_path('js/Pages'));
-        $this->files->copy(__DIR__.'/../../src/app.ts', resource_path('js/app.ts'));
+
+        $this->files->copy(__DIR__.'/../../stubs/js/app.ts', resource_path('js/app.ts'));
 
         // tsconfig (workaround?)
         $this->files->copy(__DIR__.'/../../stubs/tsconfig.json', base_path('tsconfig.json'));
