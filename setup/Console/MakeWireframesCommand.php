@@ -40,16 +40,35 @@ class MakeWireframesCommand extends BaseMakeCommand
         $this->makeInertiaMiddleware();
 
         // Make Admin
-        Artisan::call('make:admin', ['name' => 'admin']);
-        Artisan::call('make:media-manager', ['app' => 'admin', 'name' => 'media']);
-        Artisan::call('make:page-builder', ['app' => 'admin', 'name' => 'page']);
-        Artisan::call('make:nav-builder', ['app' => 'admin']);
+        if (! $this->confirm('Did you already install the Macrame Admin API already installed?', true)) {
+            Artisan::call('make:admin');
+            $this->line("Installed Macrame Admin API for you.\n");
+        }
 
-        $this->line('Created Macrame Admin application and a wireframes application.');
         $this->line("Just a view more steps to get started:\n");
 
+        $npmDependencies = [
+            'tailwindcss',
+            'lodash.merge',
+            '@headlessui/vue',
+            'ts-loader',
+            'typescript',
+            'vue@next',
+            'vue-loader@next',
+            '@inertiajs/inertia',
+            '@inertiajs/inertia-vue3',
+            '@inertiajs/progress',
+            'vue3-popper',
+            '@floating-ui/dom',
+            'embla-carousel',
+            'embla-carousel-autoplay',
+            'lazysizes',
+
+            '@vitejs/plugin-vue',
+        ];
+
         $this->line('1. Make sure the following npm packages are installed:');
-        $this->info("npm i tailwindcss lodash.merge @headlessui/vue @macramejs/admin-vue3 @macramejs/admin-config @macramejs/admin-vue3 @macramejs/macrame @macramejs/macrame-vue3 @macramejs/page-builder-vue3 ts-loader typescript vue@next vue-loader@next @inertiajs/inertia @inertiajs/inertia-vue3 @inertiajs/progress vue3-dropzone vue3-popper v-calendar@next @floating-ui/dom\n");
+        $this->info('npm i '.implode(' ', $npmDependencies)."\n");
 
         $this->line('2. Make sure to update composers autoloader:');
         $this->info("composer dumpautoload\n");
@@ -58,9 +77,9 @@ class MakeWireframesCommand extends BaseMakeCommand
         $this->info("php artisan migrate:fresh --seed\n");
 
         $this->line('4. Create a development build:');
-        $this->info("npm run watch\n");
+        $this->info("npm run dev\n");
 
-        $this->line('5. Visit '.url('admin').' and login using the following credentials:');
+        $this->line('5. Visit you Macrame Admin url and login using the following credentials:');
         $this->info('username: admin@admin.com');
         $this->info('password: secret');
 
@@ -75,6 +94,7 @@ class MakeWireframesCommand extends BaseMakeCommand
     protected function makeInertiaMiddleware()
     {
         Artisan::call('inertia:middleware');
+
         $insert = "return array_merge(parent::share(\$request), [
             'nav' => [
                 'main' => new NavResource(
@@ -116,37 +136,12 @@ use App\Http\Resources\NavResource;';
      */
     protected function makeResources()
     {
-        // remove default laravel js resources
-        $this->files->deleteDirectory(resource_path('js'));
-        $this->files->deleteDirectory(resource_path('css'));
-
-        // webpack.mix.js
-        $insert = "// App
-mix.ts('resources/js/app.ts', 'public/js/app').vue();
-mix.postCss('resources/css/app.css', 'public/css/app', [
-    tailwindcss('./app.tailwind.config.js'),
-]);
-mix.alias({
-    '@': path.join(__dirname, 'resources/js'),
-});";
-        $replace = "mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);";
-        $content = $this->files->get(base_path('webpack.mix.js'));
-        $content = Str::replaceFirst($replace, $insert, $content);
-        $this->files->put(base_path('webpack.mix.js'), $content);
-
-        $insert = "const path = require('path');
-const tailwindcss = require('tailwindcss');";
-        $after = "const mix = require('laravel-mix');";
-        $this->insertAfter(base_path('webpack.mix.js'), $insert, $after);
 
         // tailwind.config.js
-        $this->files->copy(__DIR__.'/../../tailwind.config.js', base_path('app.tailwind.config.js'));
-        $content = $this->files->get(base_path('app.tailwind.config.js'));
+        $this->files->copy(__DIR__.'/../../tailwind.config.js', base_path('tailwind.config.js'));
+        $content = $this->files->get(base_path('tailwind.config.js'));
         $content = str_replace("content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],", "content: ['./resources/**/*.vue'],", $content);
-        $this->files->put(base_path('app.tailwind.config.js'), $content);
+        $this->files->put(base_path('tailwind.config.js'), $content);
 
         // setup resources
         $this->files->ensureDirectoryExists(resource_path('css'));
@@ -165,6 +160,11 @@ const tailwindcss = require('tailwindcss');";
         $this->files->copyDirectory(__DIR__.'/../../src/types', resource_path('js/types'));
         $this->files->copyDirectory(__DIR__.'/../../src/Pages', resource_path('js/Pages'));
         $this->files->copy(__DIR__.'/../../src/app.ts', resource_path('js/app.ts'));
+
+        // tsconfig (workaround?)
+        $this->files->copy(__DIR__.'/../../stubs/tsconfig.json', base_path('tsconfig.json'));
+        $this->files->copy(__DIR__.'/../../stubs/shims-vue.d.ts', base_path('shims-vue.d.ts'));
+        $this->files->copy(__DIR__.'/../../stubs/vite.config.ts', base_path('vite.config.ts'));
     }
 
     /**
@@ -186,9 +186,6 @@ const tailwindcss = require('tailwindcss');";
      */
     protected function getOptions()
     {
-        return [
-            // ['all', 'a', InputOption::VALUE_NONE, 'Generate a migration, seeder, factory, policy, and resource controller for the model'],
-            // ['controller', 'c', InputOption::VALUE_NONE, 'Create a new controller for the model'],
-        ];
+        return [];
     }
 }
