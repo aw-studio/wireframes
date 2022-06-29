@@ -45,7 +45,7 @@ class MakeWireframesCommand extends BaseMakeCommand
             $this->line("Installed Macrame Admin API for you.\n");
         }
 
-        $this->line("Just a view more steps to get started:\n");
+        $this->line("Just a few more steps to get started:\n");
 
         $npmDependencies = [
             'tailwindcss',
@@ -79,7 +79,7 @@ class MakeWireframesCommand extends BaseMakeCommand
         $this->line('4. Create a development build:');
         $this->info("npm run dev\n");
 
-        $this->line('5. Visit you Macrame Admin url and login using the following credentials:');
+        $this->line('5. Visit your Macrame Admin url and login using the following credentials:');
         $this->info('username: admin@admin.com');
         $this->info('password: secret');
 
