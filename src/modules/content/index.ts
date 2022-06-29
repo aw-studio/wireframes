@@ -7,7 +7,7 @@ import Cards from './CardsSection.vue';
 import Infobox from './InfoboxSection.vue';
 import Block from './BlockSection.vue';
 import Accordion from './AccordionSection.vue';
-import ImageCarousel from './ImageCarousel.vue';
+import ImageCarousel from './ImageCarouselSection.vue';
 import LogoWall from './LogoWallSection.vue';
 import GridGallery from './GridGallerySection.vue';
 
