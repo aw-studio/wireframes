@@ -12,7 +12,7 @@
                 {{ page.attributes.h1 }}
             </h1>
         </div>
-        <Repeatables :repeatables="page.content" />
+        <ContentResolver :contentSections="page.content" />
     </main>
     <Footer :page="page" />
 </template>
@@ -21,7 +21,7 @@
 import { PropType } from 'vue';
 import { Footer, Header } from '../../layout';
 import { Page } from '../../types/resources';
-import { Repeatables } from '../../modules/repeatables';
+import { ContentResolver } from '../../modules/content';
 import Image from '../../components/Ui/Image.vue';
 
 const props = defineProps({

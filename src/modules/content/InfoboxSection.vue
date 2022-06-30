@@ -1,23 +1,23 @@
 <template>
     <div class="container my-16 flex justify-center">
         <Infobox
-            :title="rep.title"
-            :link="rep.link.url"
-            :link-text="rep.link.text"
+            :title="content.title"
+            :link="content.link.url"
+            :link-text="content.link.text"
         >
-            {{ rep.text }}
+            {{ content.text }}
         </Infobox>
     </div>
 </template>
 
 <script lang="ts" setup>
 import { PropType } from 'vue';
-import { RepInfobox } from '../../types/repeatables';
+import { Infobox as IInfoBox } from '../../types/content';
 import Infobox from '../../components/Ui/Infobox.vue';
 
 const props = defineProps({
-    rep: {
-        type: Object as PropType<RepInfobox>,
+    content: {
+        type: Object as PropType<IInfoBox>,
         required: true,
     },
 });

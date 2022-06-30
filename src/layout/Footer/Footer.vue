@@ -34,6 +34,6 @@ const navigation = computed(() => {
 const partials = computed(() => {
     let partials: any = usePage().props.value?.partials;
 
-    return partials.footer;
+    return partials?.footer;
 });
 </script>

@@ -1,22 +1,22 @@
 <template>
     <div class="container grid grid-cols-12 gap-10 my-16">
         <div class="col-span-6">
-            <p>{{ rep.text }}</p>
+            <p>{{ content.text }}</p>
         </div>
         <div class="col-span-6">
-            <Image :src="rep.image.url" v-if="rep.image?.url" />
+            <Image :src="content.image.url" v-if="content.image?.url" />
         </div>
     </div>
 </template>
 
 <script lang="ts" setup>
 import { PropType } from 'vue';
-import { RepTextImage } from '../../types/repeatables';
+import { TextImage } from '../../types/';
 import Image from '../../components/Ui/Image.vue';
 
 const props = defineProps({
-    rep: {
-        type: Object as PropType<RepTextImage>,
+    content: {
+        type: Object as PropType<TextImage>,
         required: true,
     },
 });

@@ -1,12 +1,12 @@
 <template>
     <section class="bg-secondary-100 my-16">
         <div class="container py-16">
-            <h2 v-if="rep.headline">
-                {{ rep.headline }}
+            <h2 v-if="content.headline">
+                {{ content.headline }}
             </h2>
             <div class="grid grid-cols-12 gap-5">
                 <div
-                    v-for="item in rep.items"
+                    v-for="item in content.items"
                     class="col-span-12 p-8 bg-white rounded md:col-span-6 lg:col-span-4"
                 >
                     <div class="mb-8 -mx-8 -mt-8" v-if="item.image?.url">
@@ -40,11 +40,11 @@
 import Image from '../../components/Ui/Image.vue';
 import Button from '../../components/Ui/Button.vue';
 import { PropType } from 'vue';
-import { RepCards } from '../../types/repeatables';
+import { Cards } from '../../types/content';
 
 const props = defineProps({
-    rep: {
-        type: Object as PropType<RepCards>,
+    content: {
+        type: Object as PropType<Cards>,
         required: true,
     },
 });
