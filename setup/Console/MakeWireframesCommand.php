@@ -65,6 +65,7 @@ class MakeWireframesCommand extends BaseMakeCommand
             'lazysizes',
 
             '@vitejs/plugin-vue',
+            'autoprefixer',
         ];
 
         $this->line('1. Make sure the following npm packages are installed:');
@@ -166,6 +167,20 @@ use App\Http\Resources\NavResource;';
         $this->files->copy(__DIR__.'/../../stubs/tsconfig.json', base_path('tsconfig.json'));
         $this->files->copy(__DIR__.'/../../stubs/shims-vue.d.ts', base_path('shims-vue.d.ts'));
         $this->files->copy(__DIR__.'/../../stubs/vite.config.ts', base_path('vite.config.ts'));
+        $this->files->copy(__DIR__.'/../../postcss.config.js', base_path('postcss.config.js'));
+        //
+        //cleanup (if exists!)
+
+        $this->deleteIfExists(base_path('vite.config.js'));
+        $this->deleteIfExists(resource_path('js/app.js'));
+        $this->deleteIfExists(resource_path('js/bootstrap.js'));
+    }
+
+    protected function deleteIfExists($filepath)
+    {
+        if ($this->files->exists($filepath)) {
+            $this->files->delete($filepath);
+        }
     }
 
     /**
