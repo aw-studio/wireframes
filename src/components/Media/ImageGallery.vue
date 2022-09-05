@@ -8,7 +8,7 @@
                 @click="toggleGallery(image.url, index)"
                 class="relative col-span-12 transition-all duration-300 cursor-pointer md:col-span-6 lg:col-span-4 xl:col-span-3 focus:outline-none focus:ring focus:ring-primary"
             >
-                <Image :src="image.url" />
+                <Image class="w-full" :image="image" />
             </button>
         </div>
         <ImageGalleryModal v-model="openModal">
@@ -18,7 +18,7 @@
                 :key="index"
                 class="mb-20"
             >
-                <Image :src="image.url" class="w-full" />
+                <Image :image="image" class="w-full" />
             </div>
         </ImageGalleryModal>
     </div>

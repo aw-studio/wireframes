@@ -34,7 +34,7 @@
                         leave-to="opacity-0 scale-95"
                     >
                         <div
-                            class="relative inline-block w-full align-middle transition-all transform bg-transparent my-28 md:max-w-xl lg:max-w-3xl"
+                            class="relative inline-block w-full align-middle transition-all transform bg-transparent my-28 md:max-w-xl lg:max-w-4xl"
                         >
                             <slot />
 

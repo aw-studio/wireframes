@@ -7,24 +7,28 @@
     >
         <img
             :src="thumb"
-            class="lazyload lazyload-animation w-full object-cover h-auto max-h-full max-w-full"
+            class="max-w-full max-h-full lazyload lazyload-animation"
             :class="{
-                'object-cover': cover,
+                'object-cover h-full w-full': cover,
+                'object-contain h-auto': !cover,
             }"
             data-sizes="auto"
             :data-srcset="srcset"
             :srcset="srcset"
+            :alt="image?.alt ?? alt"
+            :title="image?.title ?? title"
         />
     </div>
 </template>
 
 <script lang="ts" setup>
-import "lazysizes";
-import { computed, PropType } from "vue";
+import { Image } from '@/types';
+import 'lazysizes';
+import { computed, PropType } from 'vue';
 
 const props = defineProps({
-    src: {
-        type: String,
+    image: {
+        type: Object as PropType<Image>,
         required: true,
     },
     sizes: {
@@ -35,23 +39,29 @@ const props = defineProps({
     },
     cover: {
         type: Boolean,
-        default: false,
+        default: true,
     },
     overflow: {
         type: Boolean,
         default: false,
     },
+    alt: {
+        type: String,
+    },
+    title: {
+        type: String,
+    },
 });
 
 const thumb = computed(() => {
-    let w = Math.min.apply(Math, props.sizes);
-    return `${props.src}?w=${w}`;
+    let w = Math.min.apply(Math, props.sizes as number[]);
+    return `${props.image?.url}?w=${w}`;
 });
 
 const srcset = computed(() => {
-    let srcset = "";
-    props.sizes.forEach((size) => {
-        srcset += `${props.src}?w=${size} ${size}w, `;
+    let srcset = '';
+    props.sizes.forEach(size => {
+        srcset += `${props.image?.url}?w=${size} ${size}w, `;
     });
     return srcset;
 });

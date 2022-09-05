@@ -1,9 +1,9 @@
 <template>
-    <div class="bg-secondary-100 p-8 max-w-2xl">
+    <div class="w-full max-w-2xl p-8 bg-secondary-100">
         <div
             v-if="title"
             v-html="title"
-            class="text-lg font-semibold mb-6"
+            class="mb-6 text-lg font-semibold"
         ></div>
         <slot />
         <div v-if="link" class="pt-4">
