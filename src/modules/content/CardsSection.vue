@@ -1,5 +1,5 @@
 <template>
-    <section class="my-16 bg-secondary-100">
+    <section class="my-16 bg-section">
         <div class="container py-16">
             <h2 v-if="content.headline">
                 {{ content.headline }}

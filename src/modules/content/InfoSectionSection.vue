@@ -1,5 +1,5 @@
 <template>
-    <div class="mb-20 bg-secondary-100">
+    <div class="mb-20 bg-section">
         <div class="container flex py-10">
             <div class="grid max-w-4xl grid-cols-12 gap-10 mx-auto">
                 <div class="order-1 col-span-full lg:col-span-6 lg:order-0">
