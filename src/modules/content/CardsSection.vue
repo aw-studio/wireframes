@@ -1,5 +1,5 @@
 <template>
-    <section class="bg-secondary-100 my-16">
+    <section class="my-16 bg-section">
         <div class="container py-16">
             <h2 v-if="content.headline">
                 {{ content.headline }}
@@ -10,7 +10,7 @@
                     class="col-span-12 p-8 bg-white rounded md:col-span-6 lg:col-span-4"
                 >
                     <div class="mb-8 -mx-8 -mt-8" v-if="item.image?.url">
-                        <Image :src="item.image.url" />
+                        <Image :image="item.image" />
                     </div>
 
                     <h3>

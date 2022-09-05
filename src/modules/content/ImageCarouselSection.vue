@@ -2,7 +2,7 @@
     <section class="container my-16">
         <Carousel>
             <Slide v-for="item in content.items">
-                <Image :src="item.image.url" />
+                <Image :image="item.image" />
             </Slide>
         </Carousel>
     </section>

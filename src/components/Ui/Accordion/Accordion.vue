@@ -14,7 +14,7 @@
                 </h3>
                 <Button secondary square>
                     <div
-                        class="text-white transform duration-200"
+                        class="text-white duration-200 transform"
                         :class="{
                             ' rotate-180': open,
                         }"
@@ -38,17 +38,17 @@
                 </Button>
             </DisclosureButton>
             <DisclosurePanel class="px-5 border border-secondary-100 py-7">
-                {{ item.text }}
+                <div class="prose" v-html="item.text"></div>
             </DisclosurePanel>
         </Disclosure>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
-import { PropType } from "vue";
-import { AccordionItem } from ".";
-import { Button } from "..";
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
+import { PropType } from 'vue';
+import { AccordionItem } from '.';
+import { Button } from '..';
 
 defineProps({
     items: {

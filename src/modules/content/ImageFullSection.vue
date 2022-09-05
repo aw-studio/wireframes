@@ -1,5 +1,5 @@
 <template>
-    <Image :src="content.image.url" v-if="content.image?.url" class="my-16" />
+    <Image :image="content.image" v-if="content.image?.url" class="my-10" />
 </template>
 
 <script lang="ts" setup>

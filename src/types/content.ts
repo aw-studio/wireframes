@@ -5,6 +5,7 @@ import {
     LogoWallItem,
     GridGalleryItem,
     ImageCarouselItem,
+    TeaserBoxesItem,
 } from './';
 
 export type ContentSection<M> = {
@@ -21,6 +22,7 @@ export type ContentSections = (
 // TextFull
 export interface TextFull {
     text: string;
+    centered: boolean;
 }
 export type TextFullContentSection = ContentSection<TextFull>;
 
@@ -28,8 +30,32 @@ export type TextFullContentSection = ContentSection<TextFull>;
 export interface TextImage {
     text: string;
     image: Image;
+    link: Link;
+    centered: boolean;
 }
 export type TextImageContentSection = ContentSection<TextImage>;
+
+// CTA
+export interface CTA {
+    important: boolean;
+    link?: Link;
+    centered: boolean;
+}
+export type CTAContentSection = ContentSection<CTA>;
+
+// Video Embed
+export interface VideoEmbed {
+    id: string;
+    centered: boolean;
+}
+export type VideoEmbedContentSection = ContentSection<VideoEmbed>;
+
+// Image
+export interface ImageSmall {
+    image: Image;
+    centered: boolean;
+}
+export type ImageSmallContentSection = ContentSection<ImageSmall>;
 
 // ImageFull
 export interface ImageFull {
@@ -42,8 +68,23 @@ export interface Infobox {
     title: string;
     text: string;
     link: Link;
+    centered: boolean;
 }
 export type InfoboxContentSection = ContentSection<Infobox>;
+
+// TeaserBoxes
+export interface TeaserBoxes {
+    items: TeaserBoxesItem[];
+}
+export type TeaserBoxesSection = ContentSection<TeaserBoxes>;
+
+// InfoSection
+export interface InfoSection {
+    text: string;
+    image: Image;
+    link: Link;
+}
+export type InfoSectionContentSection = ContentSection<InfoSection>;
 
 // Cards
 export interface Card {
@@ -62,6 +103,7 @@ export type CardsContentSection = ContentSection<Cards>;
 export interface Accordion {
     headline: string;
     items: AccordionItem[];
+    centered: boolean;
 }
 export type AccordionContentSection = ContentSection<Accordion>;
 

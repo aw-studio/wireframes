@@ -7,6 +7,12 @@ export interface Link {
     url: string;
     text: string;
     new_tab: boolean;
+    external: boolean;
+}
+
+export interface TeaserBoxesItem {
+    title: string;
+    link?: Link;
 }
 export interface LogoWallItem {
     name: string;
