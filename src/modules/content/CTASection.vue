@@ -1,9 +1,9 @@
 <template>
-    <div
-        class="container flex py-10"
-        :class="{ 'justify-center': content.centered }"
-    >
-        <div class="w-full max-w-4xl">
+    <div class="container flex justify-center py-10">
+        <div
+            class="w-full max-w-4xl"
+            :class="{ '!max-w-full': content.content_wide }"
+        >
             <CTA :link="content.link" :veryImportant="content.important" />
         </div>
     </div>

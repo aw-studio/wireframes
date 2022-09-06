@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full max-w-2xl p-8 bg-gray-100">
+    <div class="w-full max-w-4xl p-8 bg-gray-100">
         <div
             v-if="title"
             v-html="title"
