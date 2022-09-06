@@ -1,9 +1,9 @@
 <template>
-    <section
-        class="container flex my-16"
-        :class="{ 'justify-center': content.centered }"
-    >
-        <div class="w-full max-w-4xl">
+    <section class="container flex justify-center my-16">
+        <div
+            class="w-full max-w-4xl"
+            :class="{ '!max-w-full': content.content_wide }"
+        >
             <h2 v-if="content.headline">
                 {{ content.headline }}
             </h2>

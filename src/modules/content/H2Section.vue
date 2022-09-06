@@ -1,9 +1,9 @@
 <template>
-    <div
-        class="container flex my-10"
-        :class="{ 'justify-center': content.centered }"
-    >
-        <div class="w-full max-w-4xl">
+    <div class="container flex justify-center my-10">
+        <div
+            class="w-full max-w-4xl"
+            :class="{ '!max-w-full': content.content_wide }"
+        >
             <h2 class="w-full">{{ content.text }}</h2>
         </div>
     </div>

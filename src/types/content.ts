@@ -22,7 +22,7 @@ export type ContentSections = (
 // TextFull
 export interface TextFull {
     text: string;
-    centered: boolean;
+    content_wide: boolean;
 }
 export type TextFullContentSection = ContentSection<TextFull>;
 
@@ -31,7 +31,7 @@ export interface TextImage {
     text: string;
     image: Image;
     link: Link;
-    centered: boolean;
+    content_wide: boolean;
 }
 export type TextImageContentSection = ContentSection<TextImage>;
 
@@ -39,21 +39,21 @@ export type TextImageContentSection = ContentSection<TextImage>;
 export interface CTA {
     important: boolean;
     link?: Link;
-    centered: boolean;
+    content_wide: boolean;
 }
 export type CTAContentSection = ContentSection<CTA>;
 
 // Video Embed
 export interface VideoEmbed {
     id: string;
-    centered: boolean;
+    content_wide: boolean;
 }
 export type VideoEmbedContentSection = ContentSection<VideoEmbed>;
 
 // Image
 export interface ImageSmall {
     image: Image;
-    centered: boolean;
+    content_wide: boolean;
 }
 export type ImageSmallContentSection = ContentSection<ImageSmall>;
 
@@ -68,7 +68,7 @@ export interface Infobox {
     title: string;
     text: string;
     link: Link;
-    centered: boolean;
+    content_wide: boolean;
 }
 export type InfoboxContentSection = ContentSection<Infobox>;
 
@@ -103,7 +103,7 @@ export type CardsContentSection = ContentSection<Cards>;
 export interface Accordion {
     headline: string;
     items: AccordionItem[];
-    centered: boolean;
+    content_wide: boolean;
 }
 export type AccordionContentSection = ContentSection<Accordion>;
 

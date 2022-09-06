@@ -1,8 +1,5 @@
 <template>
-    <div
-        class="container flex my-16"
-        :class="{ 'justify-center': content.centered }"
-    >
+    <div class="container flex justify-center my-16">
         <div class="w-full max-w-4xl">
             <div v-html="content.text"></div>
         </div>

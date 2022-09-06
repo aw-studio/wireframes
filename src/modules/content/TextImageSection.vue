@@ -1,9 +1,9 @@
 <template>
-    <div
-        class="container flex my-16"
-        :class="{ 'justify-center': content.centered }"
-    >
-        <div class="grid max-w-4xl grid-cols-12 gap-10">
+    <div class="container flex justify-center my-16">
+        <div
+            class="grid max-w-4xl grid-cols-12 gap-10"
+            :class="{ '!max-w-full': content.content_wide }"
+        >
             <div class="col-span-6">
                 <div class="prose" v-html="content.text"></div>
                 <ButtonPrimary

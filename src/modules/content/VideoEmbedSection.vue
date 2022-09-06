@@ -1,9 +1,9 @@
 <template>
-    <div
-        class="container flex my-16"
-        :class="{ 'justify-center': content.centered }"
-    >
-        <div class="w-full max-w-4xl">
+    <div class="container flex justify-center my-16">
+        <div
+            class="w-full max-w-4xl"
+            :class="{ '!max-w-full': content.content_wide }"
+        >
             <div style="padding: 56% 0 0 0; position: relative">
                 <iframe
                     :src="

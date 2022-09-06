@@ -1,9 +1,10 @@
 <template>
-    <div class="container flex" :class="{ 'justify-center': content.centered }">
+    <div class="container flex justify-center">
         <Image
             :image="content.image"
             v-if="content.image"
-            class="w-full my-10 md:max-w-4xl"
+            class="w-full max-w-4xl my-10"
+            :class="{ 'md:!max-w-full': content.content_wide }"
         />
     </div>
 </template>
